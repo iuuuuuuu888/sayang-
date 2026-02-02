@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For My Love 💖</title>
+
+<style>
+body{
+  background:#ffe6f2;
+  font-family:Arial;
+  text-align:center;
+}
+
+.box{
+  background:white;
+  max-width:350px;
+  margin:30px auto;
+  padding:20px;
+  border-radius:20px;
+  box-shadow:0 0 10px pink;
+}
+
+.page{display:none;}
+.page.show{display:block;}
+
+button{
+  background:#ff69b4;
+  border:none;
+  color:white;
+  padding:12px 20px;
+  border-radius:20px;
+  font-size:16px;
+  margin-top:15px;
+}
+
+img,video{
+  width:90%;
+  border-radius:15px;
+}
+
+.cat{
+  font-size:35px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<div class="page show">
+  <h2>Click Me 💖</h2>
+  <div class="cat">🐱💗</div>
+  <button onclick="next()">Klik</button>
+</div>
+
+<div class="page">
+  <h2>Allo Sayang 😘</h2>
+  <button onclick="next()">Next</button>
+</div>
+
+<div class="page">
+  <img src="foto1.jpeg">
+  <button onclick="next()">Next</button>
+</div>
+
+<div class="page">
+  <img src="foto2.jpeg">
+  <button onclick="next()">Next</button>
+</div>
+
+<div class="page">
+  <img src="foto3.jpeg">
+  <button onclick="next()">Next</button>
+</div>
+
+<div class="page">
+  <img src="foto4.jpeg">
+  <button onclick="next()">Next</button>
+</div>
+
+<div class="page">
+  <p>
+  Selamat ulang tahun sayangku ❤<br>
+  I love you so much 😘
+  </p>
+  <button onclick="next()">Next</button>
+</div>
+
+<div class="page">
+  <video controls src="video.mp4"></video>
+  <button onclick="next()">Next</button>
+</div>
+
+<div class="page">
+  <p>
+  Pengen cepet ketemu 😚💖
+  </p>
+  <button onclick="next()">Next</button>
+</div>
+
+<div class="page">
+  <h2>For You 💕</h2>
+  <img src="foto5.jpeg">
+  <div class="cat">🐱💘</div>
+</div>
+
+</div>
+
+<script>
+let now = 0;
+let pages = document.querySelectorAll(".page");
+
+function next(){
+  pages[now].classList.remove("show");
+  now++;
+  if(now < pages.length){
+    pages[now].classList.add("show");
+  }
+}
+</script>
+
+</body>
+</html>
+
