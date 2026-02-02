@@ -9,11 +9,12 @@ body{
   background:#ffe6f2;
   font-family:Arial;
   text-align:center;
+  overflow:hidden;
 }
 
 .box{
   background:white;
-  max-width:350px;
+  max-width:360px;
   margin:30px auto;
   padding:20px;
   border-radius:20px;
@@ -34,12 +35,43 @@ button{
 }
 
 img,video{
-  width:90%;
-  border-radius:15px;
+  width:100%;
+  border-radius:12px;
 }
 
 .cat{
   font-size:35px;
+}
+
+/* Grid foto */
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.grid img{
+  width:100%;
+  border-radius:12px;
+  cursor:pointer;
+  border:3px solid transparent;
+}
+
+.grid img:active{
+  border:3px solid pink;
+}
+
+/* Love effect */
+.heart{
+  position:fixed;
+  font-size:22px;
+  animation:fly 2s linear;
+  pointer-events:none;
+}
+
+@keyframes fly{
+  from{bottom:0;opacity:1;}
+  to{bottom:100%;opacity:0;}
 }
 </style>
 </head>
@@ -48,60 +80,115 @@ img,video{
 
 <div class="box">
 
+<!-- PAGE 1 -->
 <div class="page show">
   <h2>Click Me 💖</h2>
   <div class="cat">🐱💗</div>
   <button onclick="next()">Klik</button>
 </div>
 
+<!-- PAGE 2 -->
 <div class="page">
   <h2>Allo Sayang 😘</h2>
   <button onclick="next()">Next</button>
 </div>
 
+<!-- PAGE 3 : FOTO GRID -->
 <div class="page">
-  <img src="foto1.jpeg">
-  <button onclick="next()">Next</button>
+  <h3>Pilih satu 😜</h3>
+
+  <div class="grid">
+    <img src="foto1.jpeg" onclick="openPhoto(1)">
+    <img src="foto2.jpeg" onclick="openPhoto(2)">
+    <img src="foto3.jpeg" onclick="openPhoto(3)">
+    <img src="foto4.jpeg" onclick="openPhoto(4)">
+  </div>
 </div>
 
-<div class="page">
-  <img src="foto2.jpeg">
-  <button onclick="next()">Next</button>
+<!-- FOTO FULL -->
+<div class="page" id="photoPage">
+  <img id="bigPhoto">
+  <button onclick="backToGrid()">Balik</button>
 </div>
 
+<!-- PAGE PESAN -->
 <div class="page">
-  <img src="foto3.jpeg">
-  <button onclick="next()">Next</button>
+<p>
+Selamat ulang tahun sayanggkuu❤, bertambah tua emang ga enak banyak tanggungjawabnya tapi sayang terimakasi masi tetep ada di usia ay yang 24th ini🥰<br><br>
+
+semoga ultah ay kedepan depannya masi sama ade yaa, makin sayang jugaa, ade doain tahun ini bener bener tahunnya sayang buat berubah dan banyak hal yang buat sayang bahagia aamiin❤❤<br><br>
+
+maafin ade ya belum bisa timbal balik ngasi ay kado, tapi ade bakalan tetep kasi nanti kalo ade udah punya duit, sampe hari itu tiba jangan ditolak ya nanti kadonya apapun itu🥺<br><br>
+
+sekali lagi selamat ulang tahun my boy, wyatb, i love you so much🥰🥰🥰🥰
+</p>
+<button onclick="next()">Next</button>
 </div>
 
-<div class="page">
-  <img src="foto4.jpeg">
-  <button onclick="next()">Next</button>
-</div>
-
-<div class="page">
-  <p>
-  Selamat ulang tahun sayangku ❤<br>
-  I love you so much 😘
-  </p>
-  <button onclick="next()">Next</button>
-</div>
-
+<!-- VIDEO -->
 <div class="page">
   <video controls src="video.mp4"></video>
   <button onclick="next()">Next</button>
 </div>
 
+<!-- SECRET -->
 <div class="page">
-  <p>
-  Pengen cepet ketemu 😚💖
-  </p>
-  <button onclick="next()">Next</button>
+<p>
+Pengen cepet cepet ketemu, pengen cepet cepet ciuman sama sayang😚😚<br>
+nanti ciuman yang lama ya itu kado spesial dari ade🤭
+</p>
+<button onclick="next()">Next</button>
 </div>
 
+<!-- LAST -->
 <div class="page">
   <h2>For You 💕</h2>
   <img src="foto5.jpeg">
+  <div class="cat">🐱💘</div>
+</div>
+
+</div>
+
+<script>
+let now=0;
+const pages=document.querySelectorAll(".page");
+
+function next(){
+ pages[now].classList.remove("show");
+ now++;
+ if(now<pages.length){
+  pages[now].classList.add("show");
+  boomLove();
+ }
+}
+
+function openPhoto(n){
+ document.getElementById("bigPhoto").src="foto"+n+".jpeg";
+ pages[now].classList.remove("show");
+ document.getElementById("photoPage").classList.add("show");
+ boomLove();
+}
+
+function backToGrid(){
+ document.getElementById("photoPage").classList.remove("show");
+ pages[now].classList.add("show");
+}
+
+function boomLove(){
+ for(let i=0;i<8;i++){
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="💖";
+  h.style.left=Math.random()*100+"%";
+  document.body.appendChild(h);
+
+  setTimeout(()=>h.remove(),2000);
+ }
+}
+</script>
+
+</body>
+</html>
   <div class="cat">🐱💘</div>
 </div>
 
